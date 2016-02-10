@@ -1,10 +1,11 @@
 * {
   font-family: 'Chewy', cursive;
   color: #3C4C78;
-  line-height: 140%;
-  left: 50%;
+  
   text-align: center;
   border-radius: .5em;
+  margin-left: auto;
+  margin-right: auto;
   }
 
 h1 {
@@ -15,20 +16,13 @@ h1 {
 
 body {
   background: url(../pokeground.jpg);
-}
-
-#results {
-  clear
-  position: absolute;
-  top: 50%;
-
+  width: 100%;
 }
 
 table {
- 
+  width: 30%;
   font-size: 25px;
   position: relative;
-  left: 35%;
 
 }
 
@@ -42,11 +36,11 @@ th {
 }
 
 form {
-  clear: all;
+  font-size: 35px;
 }
 
 legend {
-  font-size: 25px;
+  font-size: 45px;
 }
 
 fieldset {
