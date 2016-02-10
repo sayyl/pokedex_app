@@ -4,6 +4,7 @@ $(function() {
 
   $("#showPokemon").on('click', function() {
      $("#pokemonForm").hide();
+     $("#results").show();
      $.getJSON('/pokemons', function(pokemons) {
       var table = $("#pokemons").find('tbody').empty();
       pokemons.forEach(function(pokemon) {  
