@@ -21,10 +21,11 @@ post '/pokemons' do
   results.to_json
 end
 
-post '/pokemons/delete' do
+post '/delete' do
 
   pokemon = Pokemon.find params[:id]
   results = {success: false}
+
   if pokemon.destroy
     results[:success] = true
   else

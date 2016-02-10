@@ -12,7 +12,7 @@ $(function() {
         $("<td>").appendTo(tr).text(pokemon.element);
         $("<td>").appendTo(tr).text(pokemon.level);
         $("<button>").appendTo(tr).html($("<button>")).text("Delete").on('click', function(){
-          $.post('/pokemons/delete', {id: pokemon.id}, function(data) {
+          $.post('/delete', {id: pokemon.id}, function(data) {
             if(data.success){
               alert("Pokemon has been deleted successfully.");
             } else {
