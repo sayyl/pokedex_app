@@ -1,5 +1,6 @@
 $(function() {
 
+  "use strict";
 
   $("#showPokemon").on('click', function() {
      $("#pokemonForm").hide();
@@ -9,7 +10,17 @@ $(function() {
         var tr = $("<tr>").addClass('pokemon').appendTo(table);
         $("<td>").appendTo(tr).text(pokemon.name);
         $("<td>").appendTo(tr).text(pokemon.element);
-        $("<td>").appendTo(tr).text(pokemon.level); 
+        $("<td>").appendTo(tr).text(pokemon.level);
+        $("<button>").appendTo(tr).html($("<button>")).text("Delete").on('click', function(){
+          $.post('/pokemons/delete', {id: pokemon.id}, function(data) {
+            if(data.success){
+              alert("Pokemon has been deleted successfully.");
+            } else {
+              alert(+data.name+ "pokemon could not be deleted.");
+            }
+          }, 'json');
+        });
+
        }); 
      });
    }); 
@@ -25,17 +36,17 @@ $(function() {
     var element = $("#element").val();
     var level = $("#level").val();
 
-    if (name == "" || element == "" || level == "") {
-      alert("You must fill out all fields, fool.");
+    if (name === "" || element === "" || level === "") {
+      alert("All fields must be filled!");
       return false;
     }
 
   $.post('/pokemons', {name: name, element: element, level: level}, function(data) {
     if (data.result) {
       $("#name").add("#element").add("#level").val('');
-        alert("Yay it worked. ID is: " + data.id);
+        alert("New pokemon added! ID is: " + data.id);
       } else {
-        alert("OOPS");
+        alert("Uh oh, duplicate pokemon names aren't allowed. Please try again.");
       }
     }, 'json');
 
@@ -45,7 +56,6 @@ $(function() {
   $('#searchPokemon').click(function(){
     $("#pokemonForm").hide();
     $.getJSON('/pokemons', function(pokemons) {
-      console.log('pokemons', pokemons);
       var compareTo = $('#searchForPokemon').val();
       var table = $("#pokemons").find('tbody').empty();
       var counter = 0;
@@ -59,7 +69,6 @@ $(function() {
           counter++;  
         }
       });
-      console.log(counter);
       if (counter === 0) {
         alert("Could not find Pokemon");
       }
