@@ -1,4 +1,5 @@
 $(function() {
+
   $("#showPokemon").on('click', function() {
     $("#pokemonForm").hide();
     $.getJSON('/pokemons', function(pokemon) {
@@ -13,5 +14,5 @@ $(function() {
     });
   }); 
 
-
 });
+
