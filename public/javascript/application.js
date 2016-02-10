@@ -42,14 +42,12 @@ $(function() {
     return false;
   });
 
-
-
   $('#searchPokemon').click(function(){
     console.log('button is working');
     $.getJSON('/pokemons', function(pokemons) {
       var table = $("#pokemons").find('tbody').empty();
       pokemons.forEach(function(pokemon) {
-        if (compareTo === pokemon.name) {
+        if ($('#searchForPokemon').val() === pokemon.name) {
           var tr = $("<tr>").addClass('pokemon').appendTo(table);
           $("<td>").appendTo(tr).text(pokemon.name);
           $("<td>").appendTo(tr).text(pokemon.element);
