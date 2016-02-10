@@ -1,0 +1,10 @@
+Pokemon.create(name: 'Bulbasaur', element: 'Grass', level: 3);
+Pokemon.create(name: 'Charmander', element: 'Fire', level: 3);
+Pokemon.create(name: 'Squirtle', element: 'Water', level: 5);
+Pokemon.create(name: 'Pikachu', element: 'Electric', level: 2);
+Pokemon.create(name: 'Vulpix', element: 'Fire', level: 10);
+Pokemon.create(name: 'Jigglypuff', element: 'Fairy', level: 2);
+Pokemon.create(name: 'Psyduck', element: 'Water', level: 22);
+Pokemon.create(name: 'Abra', element: 'Psychic', level: 9);
+Pokemon.create(name: 'Cubone', element: 'Ground', level: 15);
+Pokemon.create(name: 'Mew', element: 'Psychic', level: 100)
