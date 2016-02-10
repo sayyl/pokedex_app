@@ -35,11 +35,7 @@ th {
   padding: 1em;
 }
 
-form {
-  font-size: 35px;
-}
-
-legend {
+#pokemonForm {
   font-size: 45px;
 }
 
