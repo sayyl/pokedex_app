@@ -1,3 +1,54 @@
+* {
+  font-family: 'Chewy', cursive;
+  color: #3C4C78;
+  line-height: 140%;
+  left: 50%;
+  text-align: center;
+  border-radius: .5em;
+  }
+
+h1 {
+  font-size: 80px;
+  border: 0;
+  padding: 0;
+}
+
 body {
   background: url(../pokeground.jpg);
+}
+
+#results {
+  clear
+  position: absolute;
+  top: 50%;
+
+}
+
+table {
+ 
+  font-size: 25px;
+  position: relative;
+  left: 35%;
+
+}
+
+#search {
+  font-size: 25px;
+}
+
+th {
+  font-size: 1.5em;
+  padding: 1em;
+}
+
+form {
+  clear: all;
+}
+
+legend {
+  font-size: 25px;
+}
+
+fieldset {
+  border: none;
 }
