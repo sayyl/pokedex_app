@@ -28,7 +28,7 @@ $(function() {
     if (name == "" || element == "" || level == "") {
       alert("You must fill out all fields, fool.");
       return false;
-  }
+    }
 
   $.post('/pokemons', {name: name, element: element, level: level}, function(data) {
     if (data.result) {
@@ -43,21 +43,26 @@ $(function() {
   });
 
   $('#searchPokemon').click(function(){
-    console.log('button is working');
+    $("#pokemonForm").hide();
     $.getJSON('/pokemons', function(pokemons) {
+      console.log('pokemons', pokemons);
+      var compareTo = $('#searchForPokemon').val();
       var table = $("#pokemons").find('tbody').empty();
+      var counter = 0;
       pokemons.forEach(function(pokemon) {
-        if ($('#searchForPokemon').val() === pokemon.name) {
+       if (compareTo === pokemon.name) { 
           var tr = $("<tr>").addClass('pokemon').appendTo(table);
           $("<td>").appendTo(tr).text(pokemon.name);
           $("<td>").appendTo(tr).text(pokemon.element);
           $("<td>").appendTo(tr).text(pokemon.level); 
           $("#results").fadeIn('slow');
+          counter++;  
         }
-        else { 
-          alert('Did not find Pokemon'); 
-        }  
       });
+      console.log(counter);
+      if (counter === 0) {
+        alert("Could not find Pokemon");
+      }
     });
   });  
 });
