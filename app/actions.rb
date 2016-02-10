@@ -15,8 +15,8 @@ post '/pokemons' do
 
   pokemon = Pokemon.new(name: name, element: element, level: level.to_i)
   if pokemon.save
-    results[:result] = true
-    results[:id] = pokemon.id
+    results[:result] = true;
+    results[:id] = pokemon.id;
   end
   results.to_json
 end
