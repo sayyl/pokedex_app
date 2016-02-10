@@ -4,6 +4,7 @@ $(function() {
 
   $("#showPokemon").on('click', function() {
      $("#pokemonForm").hide();
+     $("#results").show();
      $.getJSON('/pokemons', function(pokemons) {
       var table = $("#pokemons").find('tbody').empty();
       pokemons.forEach(function(pokemon) {  
@@ -12,9 +13,11 @@ $(function() {
         $("<td>").appendTo(tr).text(pokemon.element);
         $("<td>").appendTo(tr).text(pokemon.level);
         $("<button>").appendTo(tr).html($("<button>")).text("Delete").on('click', function(){
-          $.post('/delete', {id: pokemon.id}, function(data) {
+          var self = $(this);
+          $.post('/pokemons/delete', {id: pokemon.id}, function(data) {
             if(data.success){
               alert("Pokemon has been deleted successfully.");
+              tr.empty();
             } else {
               alert(+data.name+ "pokemon could not be deleted.");
             }
