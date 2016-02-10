@@ -1,5 +1,8 @@
 $(function() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> tyne
   $("#showPokemon").on('click', function() {
     $("#pokemonForm").hide();
     $.getJSON('/pokemons', function(pokemons) {
@@ -13,7 +16,10 @@ $(function() {
       }); 
     });
   }); 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> tyne
 }); 
