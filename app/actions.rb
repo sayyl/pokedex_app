@@ -3,5 +3,6 @@ get '/' do
   erb :index
 end
 
-
-{:name => 'Pikachu', }
+get '/pokemons' do
+  Pokemon.all.to_json
+end
