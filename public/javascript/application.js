@@ -2,31 +2,33 @@ $(function() {
 
   "use strict";
 
-  $("#showPokemon").on('click', function() {
-     $("#pokemonForm").hide();
-     $("#results").show();
-     $.getJSON('/pokemons', function(pokemons) {
-      var table = $("#pokemons").find('tbody').empty();
-      pokemons.forEach(function(pokemon) {  
-        var tr = $("<tr>").addClass('pokemon').appendTo(table);
-        $("<td>").appendTo(tr).text(pokemon.name);
-        $("<td>").appendTo(tr).text(pokemon.element);
-        $("<td>").appendTo(tr).text(pokemon.level);
-        $("<button>").appendTo(tr).html($("<button>")).text("Delete").on('click', function(){
-          var self = $(this);
-          $.post('/pokemons/delete', {id: pokemon.id}, function(data) {
-            if(data.success){
-              alert("Pokemon has been deleted successfully.");
-              tr.empty();
-            } else {
-              alert(+data.name+ "pokemon could not be deleted.");
-            }
-          }, 'json');
-        });
+  var showEverything = function() {
+    $("#pokemonForm").hide();
+    $("#results").show();
+    $.getJSON('/pokemons', function(pokemons) {
+     var table = $("#pokemons").find('tbody').empty();
+     pokemons.forEach(function(pokemon) {  
+       var tr = $("<tr>").addClass('pokemon').appendTo(table);
+       $("<td>").appendTo(tr).text(pokemon.name);
+       $("<td>").appendTo(tr).text(pokemon.element);
+       $("<td>").appendTo(tr).text(pokemon.level);
+       $("<button>").appendTo(tr).html($("<button>")).text("Delete").on('click', function(){
+        var self = $(this);
+        $.post('/delete', {id: pokemon.id}, function(data) {
+          if(data.success){
+            alert("Pokemon has been deleted successfully.");
+            tr.empty();
+          } else {
+            alert(+data.name+ "pokemon could not be deleted.");
+          }
+        }, 'json');
+       });
 
-       }); 
-     });
-   }); 
+      }); 
+    });
+  };
+
+  $("#showPokemon").on('click', showEverything); 
 
 
   $("#addPokemon").on('click', function() {
@@ -44,10 +46,11 @@ $(function() {
       return false;
     }
 
-  $.post('/pokemons', {name: name, element: element, level: level}, function(data) {
-    if (data.result) {
-      $("#name").add("#element").add("#level").val('');
-        alert("New pokemon added! ID is: " + data.id);
+    $.post('/pokemons', {name: name, element: element, level: level}, function(data) {
+      if (data.result) {
+        $("#name").add("#element").add("#level").val('');
+          alert("New pokemon added! ID is: " + data.id);
+          showEverything();
       } else {
         alert("Uh oh, duplicate pokemon names aren't allowed. Please try again.");
       }
